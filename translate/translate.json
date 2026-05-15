@@ -17,7 +17,7 @@
     "category": "utilities",
     "keywords": ["translate", "llm", "language"],
     "icon": "https://api.iconify.design/ph/translate-fill.svg?color=%233a6ea5&width=256",
-    "permissions": [],
+    "permissions": ["data:read", "data:write"],
     "window": { "style": "phone", "width": 460, "height": 720 },
     "scripts": { "js_path": "translate.scripts.js" },
     "state": {
@@ -31,6 +31,16 @@
     "collections": {
       "scratch": {
         "schema": { "input": { "type": "string" } }
+      },
+      "history": {
+        "schema": {
+          "input": { "type": "string" },
+          "output": { "type": "string" },
+          "target": { "type": "string" },
+          "model": { "type": "string" },
+          "created_at": { "type": "string" }
+        },
+        "indexes": ["target", "created_at"]
       }
     }
   },

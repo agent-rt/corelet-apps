@@ -17,7 +17,7 @@
     "category": "utilities",
     "keywords": ["copywriting", "llm", "marketing"],
     "icon": "https://api.iconify.design/ph/megaphone-fill.svg?color=%23ef6f5f&width=256",
-    "permissions": [],
+    "permissions": ["data:read", "data:write"],
     "window": { "style": "phone", "width": 460, "height": 760 },
     "scripts": { "js_path": "copywriter.scripts.js" },
     "state": {
@@ -30,6 +30,19 @@
     "collections": {
       "scratch": {
         "schema": { "name": { "type": "string" } }
+      },
+      "history": {
+        "schema": {
+          "name": { "type": "string" },
+          "selling_points": { "type": "string" },
+          "audience": { "type": "string" },
+          "platform": { "type": "string" },
+          "tone": { "type": "string" },
+          "output": { "type": "string" },
+          "model": { "type": "string" },
+          "created_at": { "type": "string" }
+        },
+        "indexes": ["tone", "created_at"]
       }
     }
   },

@@ -16,7 +16,7 @@ const LANG_NAME = {
 };
 
 export default {
-  async translate(args = {}, { setState, scope }) {
+  async translate(args = {}, { setState, scope, dispatch }) {
     const text = (args.input ?? "").trim();
     if (!text) {
       setState({ output: "", error: "请先输入要翻译的文字" });
@@ -48,8 +48,25 @@ export default {
         throw new Error(`HTTP ${resp.status}: ${body.slice(0, 200)}`);
       }
       const data = await resp.json();
-      const out = data?.choices?.[0]?.message?.content ?? "";
-      setState({ output: out.trim(), error: "", loading: false });
+      const out = (data?.choices?.[0]?.message?.content ?? "").trim();
+      setState({ output: out, error: "", loading: false });
+      // 写历史 — 失败不影响主流程
+      if (out) {
+        try {
+          await dispatch("data.create", {
+            collection: "history",
+            data: {
+              input: text,
+              output: out,
+              target,
+              model,
+              created_at: new Date().toISOString(),
+            },
+          });
+        } catch (e) {
+          // ignore history write errors
+        }
+      }
     } catch (e) {
       setState({ output: "", error: String(e.message || e), loading: false });
     }

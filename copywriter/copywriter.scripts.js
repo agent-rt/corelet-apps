@@ -11,7 +11,7 @@ const TONE_HINT = {
 };
 
 export default {
-  async generate(args = {}, { setState, scope }) {
+  async generate(args = {}, { setState, scope, dispatch }) {
     const name = (args.name ?? "").trim();
     if (!name) {
       setState({ output: "", error: "请填商品名" });
@@ -53,8 +53,22 @@ export default {
         throw new Error(`HTTP ${resp.status}: ${body.slice(0, 200)}`);
       }
       const data = await resp.json();
-      const out = data?.choices?.[0]?.message?.content ?? "";
-      setState({ output: out.trim(), error: "", loading: false });
+      const out = (data?.choices?.[0]?.message?.content ?? "").trim();
+      setState({ output: out, error: "", loading: false });
+      if (out) {
+        try {
+          await dispatch("data.create", {
+            collection: "history",
+            data: {
+              name, selling_points: points, audience, platform, tone,
+              output: out, model,
+              created_at: new Date().toISOString(),
+            },
+          });
+        } catch (e) {
+          // ignore history write
+        }
+      }
     } catch (e) {
       setState({ output: "", error: String(e.message || e), loading: false });
     }
