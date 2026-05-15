@@ -1,0 +1,7 @@
+[
+  { "collection": "entries", "data": { "kind": "income", "amount": 30000, "category": "工资", "note": "5 月", "date": "2026-05-01" } },
+  { "collection": "entries", "data": { "kind": "expense", "amount": 1200, "category": "房租", "date": "2026-05-02" } },
+  { "collection": "entries", "data": { "kind": "expense", "amount": 85, "category": "餐饮", "note": "拉面", "date": "2026-05-15" } },
+  { "collection": "entries", "data": { "kind": "expense", "amount": 220, "category": "交通", "note": "新干线", "date": "2026-05-16" } },
+  { "collection": "entries", "data": { "kind": "income", "amount": 500, "category": "外快", "date": "2026-05-16" } }
+]

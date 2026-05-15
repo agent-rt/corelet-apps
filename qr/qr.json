@@ -7,7 +7,7 @@
       "zh": "文本生成二维码 + 粘贴图片解码",
       "ja": "テキストを QR にエンコード、画像貼り付けでデコード"
     },
-    "version": "1.0.0",
+    "version": "1.0.1",
     "runtime": "json-ui-react-v2",
     "permissions": [],
     "author": "agent-rt",
