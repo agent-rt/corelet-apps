@@ -4,11 +4,11 @@
       <Card title="新建">
         <DataForm collection="notes">
           <Input name="title" label="" placeholder="想到什么就记下来…"/>
-          <Select name="tag" label="" placeholder="标签">
+          <Combobox name="tag" label="" placeholder="标签（输入查找）">
             <Option value="idea" label="💡 灵感"/>
             <Option value="todo" label="✅ 待办"/>
             <Option value="link" label="🔗 链接"/>
-          </Select>
+          </Combobox>
           <HStack justify="end">
             <Button
               label="添加"
