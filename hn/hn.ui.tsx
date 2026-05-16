@@ -29,27 +29,33 @@
               </Text>
               <Text>{item.summary_zh}</Text>
               <HStack justify="end" gap={8}>
-                <Link label="原文" icon="link" href={item.url}/>
-                <Button
-                  label="喜欢"
-                  icon="heart"
-                  pressed={item.liked}
-                  onClick={() => data.update({
-                    collection: "stories",
-                    id: item.id,
-                    patch: { liked: !item.liked, disliked: false },
-                  })}
-                />
-                <Button
-                  label="屏蔽"
-                  icon="prohibit"
-                  color="danger"
-                  onClick={() => data.update({
-                    collection: "stories",
-                    id: item.id,
-                    patch: { liked: false, disliked: true },
-                  })}
-                />
+                <Tooltip content={item.url}>
+                  <Link label="原文" icon="link" href={item.url}/>
+                </Tooltip>
+                <Tooltip content="加入喜欢列表（首页隐藏屏蔽列表）">
+                  <Button
+                    label="喜欢"
+                    icon="heart"
+                    pressed={item.liked}
+                    onClick={() => data.update({
+                      collection: "stories",
+                      id: item.id,
+                      patch: { liked: !item.liked, disliked: false },
+                    })}
+                  />
+                </Tooltip>
+                <Tooltip content="不再在首页看到此条；可在「屏蔽」tab 恢复">
+                  <Button
+                    label="屏蔽"
+                    icon="prohibit"
+                    color="danger"
+                    onClick={() => data.update({
+                      collection: "stories",
+                      id: item.id,
+                      patch: { liked: false, disliked: true },
+                    })}
+                  />
+                </Tooltip>
               </HStack>
             </VStack>
           </Card>

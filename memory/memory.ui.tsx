@@ -7,36 +7,28 @@
       <Empty><EmptyState title="还没有固定的记忆" icon="push-pin"/></Empty>
       <Item>
         <Card>
-          <VStack gap={4}>
-            <HStack gap={6}>
-              <Badge content={item.kind} color="primary"/>
-              <Text muted>{item.project} · {item.agent}</Text>
-            </HStack>
-            <Text>{item.text}</Text>
-            {item.tags && <Text muted>#{item.tags}</Text>}
-            <HStack justify="end" gap={8}>
-              <Button
-                label="取消固定"
-                leftIcon="push-pin-slash"
-                onClick={() => data.update({
-                  collection: "memories",
-                  id: item.id,
-                  patch: { pinned: false },
-                })}
-              />
-              <Button
-                label="忘记"
-                color="danger"
-                leftIcon="trash"
+          <HStack justify="between" gap={8}>
+            <VStack gap={4}>
+              <HStack gap={6}>
+                <Badge content={item.kind} color="primary"/>
+                <Text muted>{item.project} · {item.agent}</Text>
+              </HStack>
+              <Text>{item.text}</Text>
+              {item.tags && <Text muted>#{item.tags}</Text>}
+            </VStack>
+            <Menu trigger={<Button label="" leftIcon="dots-three-vertical" size="sm"/>}>
+              <MenuItem label="取消固定" icon="push-pin-slash"
+                onClick={() => data.update({ collection: "memories", id: item.id, patch: { pinned: false } })}/>
+              <MenuItem separator/>
+              <MenuItem label="忘记" icon="trash" danger
                 onClick={() => app.confirm({
                   title: "永久忘记这条记忆？",
                   description: "无法恢复。",
                   color: "danger",
                   onConfirm: () => data.delete({ collection: "memories", id: item.id }),
-                })}
-              />
-            </HStack>
-          </VStack>
+                })}/>
+            </Menu>
+          </HStack>
         </Card>
       </Item>
     </DataList>
@@ -57,36 +49,28 @@
       </Empty>
       <Item>
         <Card>
-          <VStack gap={4}>
-            <HStack gap={6}>
-              <Badge content={item.kind} color="default"/>
-              <Text muted>{item.project} · {item.agent}</Text>
-            </HStack>
-            <Text>{item.text}</Text>
-            {item.tags && <Text muted>#{item.tags}</Text>}
-            <HStack justify="end" gap={8}>
-              <Button
-                label="固定"
-                leftIcon="push-pin"
-                onClick={() => data.update({
-                  collection: "memories",
-                  id: item.id,
-                  patch: { pinned: true },
-                })}
-              />
-              <Button
-                label="忘记"
-                color="danger"
-                leftIcon="trash"
+          <HStack justify="between" gap={8}>
+            <VStack gap={4}>
+              <HStack gap={6}>
+                <Badge content={item.kind} color="default"/>
+                <Text muted>{item.project} · {item.agent}</Text>
+              </HStack>
+              <Text>{item.text}</Text>
+              {item.tags && <Text muted>#{item.tags}</Text>}
+            </VStack>
+            <Menu trigger={<Button label="" leftIcon="dots-three-vertical" size="sm"/>}>
+              <MenuItem label="固定" icon="push-pin"
+                onClick={() => data.update({ collection: "memories", id: item.id, patch: { pinned: true } })}/>
+              <MenuItem separator/>
+              <MenuItem label="忘记" icon="trash" danger
                 onClick={() => app.confirm({
                   title: "永久忘记这条记忆？",
                   description: "无法恢复。",
                   color: "danger",
                   onConfirm: () => data.delete({ collection: "memories", id: item.id }),
-                })}
-              />
-            </HStack>
-          </VStack>
+                })}/>
+            </Menu>
+          </HStack>
         </Card>
       </Item>
     </DataList>

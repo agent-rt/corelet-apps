@@ -46,7 +46,8 @@
               {item.avatar && <Image src={item.avatar} alt={item.name} width={56} height={56}/>}
               <VStack gap={4}>
                 <Heading level={3}>{item.name}</Heading>
-                <Text muted>🎂 {item.birthday} · 主题 {item.theme} · 音量 {item.volume}</Text>
+                <Text muted>🎂 {item.birthday} · 主题 {item.theme}</Text>
+                <Progress value={item.volume} max={100} label="音量" size="sm" color="primary"/>
                 {item.bio && <Text>{item.bio}</Text>}
               </VStack>
             </HStack>
