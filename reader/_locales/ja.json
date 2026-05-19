@@ -1,0 +1,18 @@
+{
+  "cardNew": "新規",
+  "labelUrl": "URL",
+  "urlPlaceholder": "https://example.com/article",
+  "hintReload": "⌘R で取得",
+  "btnFetch": "キューに追加",
+
+  "sectionHistory": "履歴",
+  "emptyTitle": "まだ記事がありません",
+  "emptyDesc": "URL を追加して ⌘R を押してください",
+
+  "btnSource": "原文",
+  "btnRead": "読む",
+  "btnDelete": "削除",
+
+  "confirmDeleteTitle": "この記事を削除しますか？",
+  "confirmDeleteDesc": "元に戻せません。"
+}

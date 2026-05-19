@@ -1,0 +1,18 @@
+{
+  "cardNew": "New",
+  "labelUrl": "URL",
+  "urlPlaceholder": "https://example.com/article",
+  "hintReload": "⌘R to fetch queued",
+  "btnFetch": "Queue",
+
+  "sectionHistory": "History",
+  "emptyTitle": "No articles yet",
+  "emptyDesc": "Queue a URL, then press ⌘R",
+
+  "btnSource": "Source",
+  "btnRead": "Read",
+  "btnDelete": "Delete",
+
+  "confirmDeleteTitle": "Delete article?",
+  "confirmDeleteDesc": "This cannot be undone."
+}

@@ -1,0 +1,16 @@
+{
+  "cardNew": "录入",
+  "labelDate": "日期",
+  "labelWeight": "体重 (kg)",
+  "labelNote": "备注",
+  "notePlaceholder": "跑步后 / 起床后 / ...",
+  "btnAdd": "添加",
+
+  "cardTrend": "趋势（最近 90 天）",
+
+  "sectionHistory": "历史",
+  "emptyTitle": "还没有记录",
+  "emptyDesc": "今天先来一条",
+
+  "btnDelete": "删除"
+}

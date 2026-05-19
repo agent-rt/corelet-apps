@@ -4,8 +4,8 @@
 //   - https://hacker-news.firebaseio.com/v0/topstories.json  → ids 列表
 //   - https://hacker-news.firebaseio.com/v0/item/<id>.json    → 单条详情
 //
-// 翻译：title_en → title_zh + 一句 summary_zh。走本机 llmctl（local provider）。
-// 新加入的故事和"title_zh 为空"的旧故事都补翻译；已翻译的不重复花 token。
+// 翻译：title_en → title + 一句 summary。走本机 llmctl（local provider）。
+// 新加入的故事和"title 为空"的旧故事都补翻译；已翻译的不重复花 token。
 //
 // 幂等：按 hn_id dedup。已存在 → update 仅覆盖 points/comments；不存在 → create。
 //
@@ -62,17 +62,17 @@ for (const id of ids) {
       points: item.score || 0,
       comments: item.descendants || 0,
     };
-    // 补翻译：已有 row 但 title_zh / summary_zh 空 → 补一下
-    if (!ex.data.title_zh) {
+    // 补翻译：已有 row 但 title / summary 空 → 补一下
+    if (!ex.data.title) {
       const tzh = llmcall(TITLE_SYSTEM, item.title);
       if (tzh) {
-        patch.title_zh = tzh;
+        patch.title = tzh;
         translated++;
       }
     }
-    if (!ex.data.summary_zh) {
+    if (!ex.data.summary) {
       const szh = llmcall(SUMMARY_SYSTEM, item.title);
-      if (szh) patch.summary_zh = szh;
+      if (szh) patch.summary = szh;
     }
     aglet.data.update(APP_ID, "stories", ex.id, patch);
     updated++;
@@ -83,10 +83,10 @@ for (const id of ids) {
     aglet.data.create(APP_ID, "stories", {
       hn_id: id,
       title_en: item.title,
-      title_zh: tzh,
+      title: tzh,
       url: item.url || `https://news.ycombinator.com/item?id=${id}`,
       domain: domainOf(item.url),
-      summary_zh: szh,
+      summary: szh,
       points: item.score || 0,
       comments: item.descendants || 0,
       author: item.by || "",

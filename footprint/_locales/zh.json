@@ -1,0 +1,17 @@
+{
+  "cardMap": "地图",
+  "cardNew": "新地点",
+  "labelName": "名称",
+  "namePlaceholder": "东京塔",
+  "labelLat": "纬度",
+  "labelLng": "经度",
+  "labelNote": "备注",
+  "notePlaceholder": "和朋友一起 / 第一次去 / ...",
+  "btnAdd": "添加",
+
+  "sectionHistory": "去过的",
+  "emptyTitle": "还没有记录",
+  "emptyDesc": "添加一个地点开始你的足迹",
+
+  "btnDelete": "删除"
+}

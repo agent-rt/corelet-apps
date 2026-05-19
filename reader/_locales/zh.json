@@ -1,0 +1,18 @@
+{
+  "cardNew": "新增",
+  "labelUrl": "URL",
+  "urlPlaceholder": "https://example.com/article",
+  "hintReload": "⌘R 抓取队列",
+  "btnFetch": "加入队列",
+
+  "sectionHistory": "历史",
+  "emptyTitle": "还没有文章",
+  "emptyDesc": "把 URL 加进队列，然后按 ⌘R",
+
+  "btnSource": "原文",
+  "btnRead": "阅读",
+  "btnDelete": "删除",
+
+  "confirmDeleteTitle": "删除这条记录？",
+  "confirmDeleteDesc": "不可撤销。"
+}

@@ -1,0 +1,16 @@
+{
+  "cardNew": "Log entry",
+  "labelDate": "Date",
+  "labelWeight": "Weight (kg)",
+  "labelNote": "Note",
+  "notePlaceholder": "after run / morning / ...",
+  "btnAdd": "Add",
+
+  "cardTrend": "Trend (last 90 days)",
+
+  "sectionHistory": "History",
+  "emptyTitle": "No entries yet",
+  "emptyDesc": "Log today to start tracking",
+
+  "btnDelete": "Delete"
+}

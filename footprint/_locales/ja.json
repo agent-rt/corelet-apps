@@ -1,0 +1,17 @@
+{
+  "cardMap": "地図",
+  "cardNew": "新しい場所",
+  "labelName": "名前",
+  "namePlaceholder": "東京タワー",
+  "labelLat": "緯度",
+  "labelLng": "経度",
+  "labelNote": "メモ",
+  "notePlaceholder": "友人と / 初訪問 / ...",
+  "btnAdd": "追加",
+
+  "sectionHistory": "訪問済み",
+  "emptyTitle": "まだ記録がありません",
+  "emptyDesc": "地点を追加して足跡を始めましょう",
+
+  "btnDelete": "削除"
+}

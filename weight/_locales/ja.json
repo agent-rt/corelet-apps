@@ -1,0 +1,16 @@
+{
+  "cardNew": "記録",
+  "labelDate": "日付",
+  "labelWeight": "体重 (kg)",
+  "labelNote": "メモ",
+  "notePlaceholder": "ランニング後 / 朝 / ...",
+  "btnAdd": "追加",
+
+  "cardTrend": "推移（直近 90 日）",
+
+  "sectionHistory": "履歴",
+  "emptyTitle": "まだ記録がありません",
+  "emptyDesc": "今日から記録を始めましょう",
+
+  "btnDelete": "削除"
+}

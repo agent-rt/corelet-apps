@@ -1,0 +1,17 @@
+{
+  "cardMap": "Map",
+  "cardNew": "New place",
+  "labelName": "Name",
+  "namePlaceholder": "Tokyo Tower",
+  "labelLat": "Latitude",
+  "labelLng": "Longitude",
+  "labelNote": "Note",
+  "notePlaceholder": "with friends / first visit / ...",
+  "btnAdd": "Add",
+
+  "sectionHistory": "Visited",
+  "emptyTitle": "No places yet",
+  "emptyDesc": "Add a place to start your map",
+
+  "btnDelete": "Delete"
+}
