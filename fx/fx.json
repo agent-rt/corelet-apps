@@ -15,11 +15,20 @@
     "runtime": "auto",
     "author": "agent-rt",
     "category": "utilities",
-    "keywords": ["currency", "fx", "profit", "margin"],
+    "keywords": [
+      "currency",
+      "fx",
+      "profit",
+      "margin"
+    ],
     "icon": "https://api.iconify.design/ph/currency-circle-dollar-fill.svg?color=%231f883d&width=256",
     "permissions": [],
-    "window": { "style": "phone", "width": 420, "height": 720 },
-    "scripts": { "js_path": "fx.scripts.js" },
+    "window": {
+      "style": "phone",
+      "width": 420,
+      "height": 720
+    },
+    "scripts": null,
     "state": {
       "rates_json": "",
       "rates_at": "",
@@ -29,9 +38,14 @@
     },
     "collections": {
       "scratch": {
-        "schema": { "cost": { "type": "number" } }
+        "schema": {
+          "cost": {
+            "type": "number"
+          }
+        }
       }
     }
   },
-  "ui": "fx.ui.tsx"
+  "ui": "fx.ui.tsx",
+  "scripts": "fx.scripts.js"
 }

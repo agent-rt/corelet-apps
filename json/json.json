@@ -15,14 +15,27 @@
     "runtime": "auto",
     "author": "agent-rt",
     "category": "developer-tools",
-    "keywords": ["json", "format", "pretty", "validator"],
+    "keywords": [
+      "json",
+      "format",
+      "pretty",
+      "validator"
+    ],
     "icon": "https://api.iconify.design/ph/brackets-curly-fill.svg?color=%233a6ea5&width=256",
     "permissions": [],
-    "window": { "style": "phone", "width": 480, "height": 720 },
-    "scripts": { "js_path": "json.scripts.js" },
+    "window": {
+      "style": "phone",
+      "width": 480,
+      "height": 720
+    },
+    "scripts": null,
     "collections": {
       "scratch": {
-        "schema": { "input": { "type": "string" } }
+        "schema": {
+          "input": {
+            "type": "string"
+          }
+        }
       }
     },
     "state": {
@@ -32,8 +45,12 @@
       "info": ""
     },
     "keys": {
-      "Enter": { "script": "format", "args": {} }
+      "Enter": {
+        "script": "format",
+        "args": {}
+      }
     }
   },
-  "ui": "json.ui.tsx"
+  "ui": "json.ui.tsx",
+  "scripts": "json.scripts.js"
 }
