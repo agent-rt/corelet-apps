@@ -1,6 +1,6 @@
 <Tray id="main">
   <TrayLabel>
-    <Icon symbol="cpu"/>
+    <Sparkline collection="metrics" field="cpu_pct" color="primary"/>
     <Text>{{op:"state", path:"/state/menubar_title"}}</Text>
   </TrayLabel>
 
