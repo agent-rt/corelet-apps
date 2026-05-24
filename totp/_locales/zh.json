@@ -1,0 +1,6 @@
+{
+  "addTitle": "添加账号",
+  "addHint": "粘贴 otpauth://totp/... 或用其它工具扫描二维码",
+  "addBtn": "添加",
+  "emptyTitle": "暂无 2FA 账号"
+}

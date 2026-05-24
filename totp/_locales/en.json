@@ -1,0 +1,6 @@
+{
+  "addTitle": "Add account",
+  "addHint": "Paste otpauth://totp/... or scan QR with another tool",
+  "addBtn": "Add",
+  "emptyTitle": "No 2FA accounts yet"
+}

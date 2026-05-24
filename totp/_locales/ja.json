@@ -1,0 +1,6 @@
+{
+  "addTitle": "アカウント追加",
+  "addHint": "otpauth://totp/... を貼るか、別ツールで QR をスキャン",
+  "addBtn": "追加",
+  "emptyTitle": "2FA アカウントなし"
+}
