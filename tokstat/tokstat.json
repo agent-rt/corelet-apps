@@ -1,12 +1,12 @@
 {
   "manifest": {
     "id": "tokstat",
-    "name": "Claude Usage",
-    "description": "Claude session + weekly usage in your menu bar. Subscribes to the `tokstat` stdio plugin's `sample` resource; the plugin spawns the `claude` CLI in a PTY every minute, sends `/usage`, and parses the rendered panel. v0.1 — Claude only.",
-    "version": "0.1.0",
+    "name": "AI Token Usage",
+    "description": "Claude + Codex session/weekly usage in your menu bar. Claude: PTY-spawns `claude /usage` per minute. Codex: reads ~/.codex/sessions rollout JSONL (no subprocess). Menubar shows two lines `CL <s>·<w>` and `CX <s>·<w>`; popover breaks each side out with progress bars + reset countdowns.",
+    "version": "0.2.0",
     "runtime": "web",
     "requires": [
-      { "plugin": "tokstat", "version": ">=0.1" }
+      { "plugin": "tokstat", "version": ">=0.2" }
     ],
     "permissions": [
       "data:read",
@@ -17,6 +17,7 @@
         "storage": "persistent",
         "schema": {
           "ts": { "type": "integer" },
+          "source": { "type": "string" },
           "ok": { "type": "boolean" },
           "session_pct": { "type": "integer" },
           "weekly_pct": { "type": "integer" },
