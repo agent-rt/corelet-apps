@@ -35,10 +35,12 @@
       </VStack>
 
       <VStack gap={4}>
-        <HStack className="items-center">
+        <HStack className="items-center gap-2">
           <Text className="text-xs font-semibold uppercase tracking-wider">Codex</Text>
+          <Text className="text-[10px] uppercase text-zinc-400">{{op:"state", path:"/state/codex_source_text"}}</Text>
           <Spacer/>
-          <Text className="text-xs tabular-nums text-zinc-400">{{op:"state", path:"/state/codex_plan_text"}}</Text>
+          <Text className="text-xs text-zinc-400">{{op:"state", path:"/state/codex_plan_text"}}</Text>
+          <Text className="text-xs tabular-nums text-zinc-500">{{op:"state", path:"/state/codex_credits_text"}}</Text>
         </HStack>
         <VStack gap={2}>
           <HStack className="items-center">

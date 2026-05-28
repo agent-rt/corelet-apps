@@ -71,6 +71,10 @@ export default {
     const xSp = xSess.used_pct;
     const xWp = xWeek.used_pct;
     const xPlan = typeof codex.plan_type === "string" ? codex.plan_type : null;
+    const xSource = typeof codex.source === "string" ? codex.source : "";
+    const xCredits = codex.credits ?? {};
+    const xCredBalance = typeof xCredits.balance === "string" ? xCredits.balance : null;
+    const xCredUnlim = xCredits.unlimited === true;
 
     // Data 链路：claude 和 codex 各落一条 samples row（同 schema，按 source 区分）。
     // 失败侧（ok=false）跳，避免空 row 污染 sparkline。
@@ -127,6 +131,8 @@ export default {
       codex_weekly_bar: bar(xWp),
       codex_weekly_reset_text: resetLine(null, xWeek.resets_at_ms),
       codex_plan_text: xPlan ? xPlan : "—",
+      codex_source_text: xSource ? xSource : "—",
+      codex_credits_text: xCredUnlim ? "unlimited" : (xCredBalance != null ? `$${xCredBalance}` : "—"),
 
       // Menubar combined
       menubar_title: lines.join("\n"),
