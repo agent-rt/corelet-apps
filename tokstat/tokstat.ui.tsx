@@ -1,87 +1,96 @@
-<Tray id="main">
+<Tray id="main" onClick="popover">
   <TrayLabel>
-    <Icon symbol="gauge.medium"/>
-    <Text>{{op:"state", path:"/state/menubar_title"}}</Text>
+    <Text>{{op:"concat", args:["CL ", {op:"data", collection:"current", where:{source:"claude"}, latest:true, field:"menu_text"}]}}</Text>
+    <Text>{{op:"concat", args:["CX ", {op:"data", collection:"current", where:{source:"codex"}, latest:true, field:"menu_text"}]}}</Text>
   </TrayLabel>
 
+  <TrayMenu>
+    <TrayMenuItem label="Refresh now" onSelect="refreshNow"/>
+    <TrayMenuItem label="Quit" quit/>
+  </TrayMenu>
+
   <TrayPopover>
-    <VStack gap={12} className="px-3 py-3 select-none w-[320px]">
+    <VStack gap={8} className="px-3 py-2 select-none w-[280px]">
 
-      <VStack gap={6}>
-        <HStack className="items-center">
-          <Text className="text-xs font-semibold uppercase tracking-wider">Claude</Text>
-          <Spacer/>
-          <Text className="text-xs tabular-nums text-zinc-400">{{op:"state", path:"/state/claude_cost_text"}}</Text>
-        </HStack>
-        <VStack gap={2}>
+      <DataScope alias="cl" collection="current" query={{where:{source:"claude"}}} latest>
+        <VStack gap={3}>
           <HStack className="items-center">
-            <Text className="text-[11px] uppercase tracking-wider text-zinc-500">Session</Text>
+            <Text className="text-[11px] font-semibold uppercase tracking-wider">Claude</Text>
             <Spacer/>
-            <Text className="text-sm font-semibold tabular-nums">{{op:"state", path:"/state/claude_session_pct_text"}}</Text>
+            <Text className="text-[10px] tabular-nums text-zinc-400">{{op:"state", path:"/data/cl/cost_text"}}</Text>
           </HStack>
-          <Progress
-            value={{op:"state", path:"/state/claude_session_pct"}}
-            max={100}
-            color={{op:"state", path:"/state/claude_session_color"}}
-            size="md"
-          />
-          <Text className="text-[10px] text-zinc-500">resets {{op:"state", path:"/state/claude_session_reset_text"}}</Text>
+          <VStack gap={1}>
+            <HStack className="items-center">
+              <Text className="text-[10px] uppercase tracking-wider text-zinc-500">Session</Text>
+              <Spacer/>
+              <Text className="text-xs font-semibold tabular-nums">{{op:"state", path:"/data/cl/session_pct_text"}}</Text>
+            </HStack>
+            <Progress
+              value={{op:"state", path:"/data/cl/session_pct"}}
+              max={100}
+              color={{op:"state", path:"/data/cl/session_color"}}
+              size="sm"
+            />
+            <Text className="text-[10px] text-zinc-500 leading-tight">resets {{op:"state", path:"/data/cl/session_reset_text"}}</Text>
+          </VStack>
+          <VStack gap={1}>
+            <HStack className="items-center">
+              <Text className="text-[10px] uppercase tracking-wider text-zinc-500">Week</Text>
+              <Spacer/>
+              <Text className="text-xs font-semibold tabular-nums">{{op:"state", path:"/data/cl/weekly_pct_text"}}</Text>
+            </HStack>
+            <Progress
+              value={{op:"state", path:"/data/cl/weekly_pct"}}
+              max={100}
+              color={{op:"state", path:"/data/cl/weekly_color"}}
+              size="sm"
+            />
+            <Text className="text-[10px] text-zinc-500 leading-tight">resets {{op:"state", path:"/data/cl/weekly_reset_text"}}</Text>
+          </VStack>
+          <Text className="text-[10px] text-amber-500 leading-tight">{{op:"state", path:"/data/cl/err"}}</Text>
         </VStack>
-        <VStack gap={2}>
-          <HStack className="items-center">
-            <Text className="text-[11px] uppercase tracking-wider text-zinc-500">Week (all models)</Text>
-            <Spacer/>
-            <Text className="text-sm font-semibold tabular-nums">{{op:"state", path:"/state/claude_weekly_pct_text"}}</Text>
-          </HStack>
-          <Progress
-            value={{op:"state", path:"/state/claude_weekly_pct"}}
-            max={100}
-            color={{op:"state", path:"/state/claude_weekly_color"}}
-            size="md"
-          />
-          <Text className="text-[10px] text-zinc-500">resets {{op:"state", path:"/state/claude_weekly_reset_text"}}</Text>
-        </VStack>
-        <Text className="text-[10px] text-amber-500">{{op:"state", path:"/state/claude_err"}}</Text>
-      </VStack>
+      </DataScope>
 
-      <VStack gap={6}>
-        <HStack className="items-center gap-2">
-          <Text className="text-xs font-semibold uppercase tracking-wider">Codex</Text>
-          <Text className="text-[10px] uppercase text-zinc-400">{{op:"state", path:"/state/codex_source_text"}}</Text>
-          <Spacer/>
-          <Text className="text-xs text-zinc-400">{{op:"state", path:"/state/codex_plan_text"}}</Text>
-          <Text className="text-xs tabular-nums text-zinc-500">{{op:"state", path:"/state/codex_credits_text"}}</Text>
-        </HStack>
-        <VStack gap={2}>
-          <HStack className="items-center">
-            <Text className="text-[11px] uppercase tracking-wider text-zinc-500">5h window</Text>
+      <DataScope alias="cx" collection="current" query={{where:{source:"codex"}}} latest>
+        <VStack gap={3}>
+          <HStack className="items-center gap-1.5">
+            <Text className="text-[11px] font-semibold uppercase tracking-wider">Codex</Text>
+            <Text className="text-[9px] uppercase text-zinc-400">{{op:"state", path:"/data/cx/source_text"}}</Text>
             <Spacer/>
-            <Text className="text-sm font-semibold tabular-nums">{{op:"state", path:"/state/codex_session_pct_text"}}</Text>
+            <Text className="text-[10px] text-zinc-400">{{op:"state", path:"/data/cx/plan_text"}}</Text>
+            <Text className="text-[10px] tabular-nums text-zinc-500">{{op:"state", path:"/data/cx/credits_text"}}</Text>
           </HStack>
-          <Progress
-            value={{op:"state", path:"/state/codex_session_pct"}}
-            max={100}
-            color={{op:"state", path:"/state/codex_session_color"}}
-            size="md"
-          />
-          <Text className="text-[10px] text-zinc-500">resets {{op:"state", path:"/state/codex_session_reset_text"}}</Text>
+          <VStack gap={1}>
+            <HStack className="items-center">
+              <Text className="text-[10px] uppercase tracking-wider text-zinc-500">5h</Text>
+              <Spacer/>
+              <Text className="text-xs font-semibold tabular-nums">{{op:"state", path:"/data/cx/session_pct_text"}}</Text>
+            </HStack>
+            <Progress
+              value={{op:"state", path:"/data/cx/session_pct"}}
+              max={100}
+              color={{op:"state", path:"/data/cx/session_color"}}
+              size="sm"
+            />
+            <Text className="text-[10px] text-zinc-500 leading-tight">resets {{op:"state", path:"/data/cx/session_reset_text"}}</Text>
+          </VStack>
+          <VStack gap={1}>
+            <HStack className="items-center">
+              <Text className="text-[10px] uppercase tracking-wider text-zinc-500">Week</Text>
+              <Spacer/>
+              <Text className="text-xs font-semibold tabular-nums">{{op:"state", path:"/data/cx/weekly_pct_text"}}</Text>
+            </HStack>
+            <Progress
+              value={{op:"state", path:"/data/cx/weekly_pct"}}
+              max={100}
+              color={{op:"state", path:"/data/cx/weekly_color"}}
+              size="sm"
+            />
+            <Text className="text-[10px] text-zinc-500 leading-tight">resets {{op:"state", path:"/data/cx/weekly_reset_text"}}</Text>
+          </VStack>
+          <Text className="text-[10px] text-amber-500 leading-tight">{{op:"state", path:"/data/cx/err"}}</Text>
         </VStack>
-        <VStack gap={2}>
-          <HStack className="items-center">
-            <Text className="text-[11px] uppercase tracking-wider text-zinc-500">Week</Text>
-            <Spacer/>
-            <Text className="text-sm font-semibold tabular-nums">{{op:"state", path:"/state/codex_weekly_pct_text"}}</Text>
-          </HStack>
-          <Progress
-            value={{op:"state", path:"/state/codex_weekly_pct"}}
-            max={100}
-            color={{op:"state", path:"/state/codex_weekly_color"}}
-            size="md"
-          />
-          <Text className="text-[10px] text-zinc-500">resets {{op:"state", path:"/state/codex_weekly_reset_text"}}</Text>
-        </VStack>
-        <Text className="text-[10px] text-amber-500">{{op:"state", path:"/state/codex_err"}}</Text>
-      </VStack>
+      </DataScope>
 
     </VStack>
   </TrayPopover>
