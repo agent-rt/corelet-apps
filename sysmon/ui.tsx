@@ -54,6 +54,23 @@
         <Meter value={{op:"state", path:"/state/batt_pct"}} min={0} max={100} color={{op:"state", path:"/state/batt_color"}}/>
       </VStack>
 
+      <VStack gap={1}>
+        <HStack className="items-center">
+          <Text className="text-xs font-medium uppercase tracking-wider text-zinc-500">Temp</Text>
+          <Spacer/>
+          <Text className="text-sm font-semibold tabular-nums">{{op:"state", path:"/state/temp_text"}}</Text>
+        </HStack>
+        <Meter value={{op:"state", path:"/state/temp_pct"}} min={0} max={100} color={{op:"state", path:"/state/temp_color"}}/>
+      </VStack>
+
+      <VStack gap={1}>
+        <HStack className="items-center">
+          <Text className="text-xs font-medium uppercase tracking-wider text-zinc-500">Fan</Text>
+          <Spacer/>
+          <Text className="text-sm font-semibold tabular-nums">{{op:"state", path:"/state/fan_text"}}</Text>
+        </HStack>
+      </VStack>
+
       <Divider/>
 
       <VStack gap={1}>

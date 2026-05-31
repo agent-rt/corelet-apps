@@ -10,6 +10,12 @@ function pctColor(p) {
   if (p >= 60) return "warning";
   return "success";
 }
+// 温度 → color（<60℃ 绿，<80℃ 黄，≥80℃ 红）。
+function tempColor(c) {
+  if (c >= 80) return "danger";
+  if (c >= 60) return "warning";
+  return "success";
+}
 const fmtGB = (bytes) => (bytes / 1e9).toFixed(1);
 
 export default {
@@ -28,6 +34,12 @@ export default {
 
     const batt = await ctx.plugins.sysmon.battery();
 
+    // 温度（私有 IOHID）/ 风扇（SMC）。无传感器/无风扇机型 → present=false 优雅降级。
+    const temp = await ctx.plugins.sysmon.temp();
+    const tempC = temp.present ? (temp.cpu_c || temp.max_c) : 0;
+
+    const fan = await ctx.plugins.sysmon.fan();
+
     await ctx.dispatch("data.create", {
       collection: "metrics",
       data: {
@@ -37,6 +49,7 @@ export default {
         mem_total: mem.total_bytes,
         disk_pct: diskPct,
         gpu_pct: gpuPct,
+        temp_c: tempC,
       },
     });
 
@@ -74,8 +87,17 @@ export default {
       batt_pct: batt.present ? batt.percent : 0,
       batt_color: battColor,
 
+      temp_present: temp.present,
+      temp_text: temp.present ? `${tempC.toFixed(0)}°C` : "—",
+      temp_pct: temp.present ? tempC : 0,
+      temp_color: tempColor(tempC),
+
+      fan_present: fan.present,
+      fan_text: fan.present ? `${Math.round(fan.rpm)} rpm` : "—",
+
       menubar_title:
         `CPU ${cpuPct.toFixed(0)}%\nMEM ${memPct.toFixed(0)}%` +
+        (temp.present ? `\nTEMP ${tempC.toFixed(0)}°C` : "") +
         (batt.present ? `\nBAT ${batt.percent.toFixed(0)}%` : ""),
     });
   },
